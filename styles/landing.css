@@ -37,8 +37,9 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 30px;
   cursor: context-menu;
+  text-decoration: none;
 }
-.Header a {
+.Header #sobre {
   color: rgb(43, 43, 43);
   background-color: rgb(232, 232, 232);
   padding: 9px 22px 9px 22px;
@@ -49,7 +50,7 @@ body {
   font-size: 18px;
   transition: all 0.1s ease-in;
 }
-.Header a:hover {
+.Header #sobre:hover {
   background-color: rgb(240, 240, 240);
 }
 .Header li {
