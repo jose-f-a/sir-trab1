@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/landing.css" />
+    <title>Sports Portal</title>
+  </head>
+
+  <body>
+    <div class="grid-container">
+      <nav class="Header">
+        <h2 id="logo">Sports Portal</h2>
+        <ul>
+          <li><a href="./about.html">Sobre</a></li>
+        </ul>
+      </nav>
+
+      <div class="F1" onclick="openF1()">
+        <img src="../assets/f1.jpg" alt="F1" />
+        <h2>Formula 1</h2>
+      </div>
+      <div class="CSGO" onclick="openCSGO()">
+        <img src="../assets/csgo.jpg" alt="CSGO" />
+        <h2>CS:GO</h2>
+      </div>
+      <div class="Futebol" onclick="openFUT()">
+        <img src="../assets/fut.jpg" alt="Futebol" />
+        <h2>Futebol</h2>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function openF1() {
+      location.href = "./f1.php";
+    }
+    function openCSGO() {
+      location.href = "./csgo.php";
+    }
+    function openFUT() {
+      location.href = "./futebol.php";
+    }
+  </script>
+</html>
