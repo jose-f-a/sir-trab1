@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 /** Header */
@@ -33,7 +33,7 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: 20% 80%;
-  grid-template-rows: 100vh;
+  grid-template-rows: 100%;
   gap: 0px 0px;
   grid-template-areas: "side-menu content";
 }
@@ -56,14 +56,25 @@ body {
   letter-spacing: 1px;
   text-align: start;
   padding-left: 20px;
-  transition: all 0.1s ease-in;
+  transition: all 0.07s ease-in;
 }
 .side-menu button:hover {
   background: #999;
 }
+.side-menu button:focus {
+  border: none;
+}
 .content {
   grid-area: content;
   padding: 40px;
+}
+
+/**  Noticias */
+.noticia {
+  padding: 25px;
+}
+.noticia a {
+  padding: 25px;
 }
 
 /**  Scrollbar */

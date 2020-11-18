@@ -29,6 +29,10 @@
 
     Token: 8fd782e2332341d7bc8f521888051600
 
+### News API
+
+    Token: 277b737d73cb451b99b3364115c2e329
+
 ---
 
 # Layout
