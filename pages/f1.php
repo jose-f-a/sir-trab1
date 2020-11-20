@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -50,6 +46,7 @@
     $(document).ready(function () {
       $("#content").empty();
 
+      nextRace();
       currentStandings();
     });
 
@@ -183,21 +180,39 @@
       $.ajax(settings).done(function (response) {
         console.log(response);
 
-
-
-        for (var i = 0; i < response.articles.length; i++){
+        for (var i = 0; i < 6; i++){
+          var j = response.articles[i];
           var noticia = `<div class="noticia" id="noticia${i}">
-              <a href="${response.articles[i].url}">Link</a>
-              <h2 class="titulo"> ${response.articles[i].title} </h2>
-              <h4 class="source"> ${response.articles[i].source.name} </h4>
-              <p class="data">${response.articles[i].publishedAt}</p>
-              <p class="corpo">${response.articles[i].content}</p>
-              <img src="${response.articles[i].urlToImage}" alt="${response.articles[i].title}">
+              <a href="${j.url}">Link</a>
+              <h2 class="titulo"> ${j.title} </h2>
+              <h4 class="source"> ${j.source.name} </h4>
+              <p class="data">${j.publishedAt}</p>
+              <p class="corpo">${j.content}</p>
+              <img src="${j.urlToImage}" alt="${j.title}" width="625" height="350">
             </div>`
 
             $("#content").append(noticia);
         }
 
+      });
+    }
+
+    function nextRace() {
+      $.ajax({
+        url: "http://ergast.com/api/f1/current/next.json",
+        method: "GET",
+      }).done(function (response) {
+        for (var i = 0; i < response.MRData.total; i++) {
+          var j = response.MRData.RaceTable.Races[i];
+          var proximaCorrida = `<div>
+              <h2>${j.raceName}</h2>
+              <h4>${j.Circuit.circuitName}</h4>
+              <h4>${j.Circuit.Location.country}</h4>
+              <h5>${j.date}</h5>
+            </div>`;
+
+            $("#content").append(proximaCorrida);
+        }
       });
     }
   </script>
