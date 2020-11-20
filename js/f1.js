@@ -1,3 +1,5 @@
+const loader = `<div class='loader' id='loader-1'></div>`;
+
 $(document).ready(function () {
   $("#content").empty();
 
@@ -5,67 +7,47 @@ $(document).ready(function () {
   currentStandings();
 });
 
-function currentSeason() {
-  $("#content").empty();
-
+function nextRace() {
   $.ajax({
-    url: "http://ergast.com/api/f1/current.json",
+    url: "http://ergast.com/api/f1/current/next.json",
     method: "GET",
   }).done(function (response) {
-    /** HTML*/
-    var temporada = `<h1>Temporada: ${response.MRData.RaceTable.season} </h1>`;
-    $("#content").append(temporada);
-
-    var table = `<div class="table" id="tabela">
-        <div class="row header green">
-          <div class="cell">Ronda</div>
-          <div class="cell">Localização</div>
-          <div class="cell">Nome do Circuito</div>
-          <div class="cell">Nome da Corrida</div>
-          <div class="cell">Data</div>
-          <div class="cell">Hora</div>
-        </div>
-      </div>`;
-
-    $("#content").append(table);
-
-    for (var i = 0; i <= response.MRData.total; i++) {
+    for (var i = 0; i < response.MRData.total; i++) {
       var j = response.MRData.RaceTable.Races[i];
-      var current = `<div class="row">
-            <div class="cell">${j.round}</div>
-            <div class="cell">${j.Circuit.Location.locality}, ${j.Circuit.Location.country}</div>
-            <div class="cell">${j.Circuit.circuitName}</div>
-            <div class="cell">${j.raceName}</div>
-            <div class="cell">${j.date}</div>
-            <div class="cell">${j.time}</div>
-          </div>`;
+      var proximaCorrida = `<div>
+            <h2>${j.raceName}</h2>
+            <h4>${j.Circuit.circuitName}</h4>
+            <h4>${j.Circuit.Location.country}</h4>
+            <h5>${j.date}</h5>
+          </div> <br>`;
 
-      $("#tabela").append(current);
+      $("#content").append(proximaCorrida);
     }
   });
 }
 
 function currentStandings() {
   $("#content").empty();
+
   /** Getting Driver Standings */
   $.ajax({
     url: "http://ergast.com/api/f1/current/driverStandings.json",
     method: "GET",
   }).done(function (response) {
-    var temporada = `<h1>Temporada: ${response.MRData.StandingsTable.season} </h1>`;
+    var temporada = `<h2>Temporada: ${response.MRData.StandingsTable.season} </h2> <br>`;
     $("#content").append(temporada);
 
-    var tablePilotos = `<div class="table" id="tabelaPilotos">
+    var pilotosHeader = `<div class="table" id="pilotosHeader">
         <div class="row header green">
-          <div class="cell">Posição</div>
+          <div class="cell" style="border-radius: 10px 0px 0px">Posição</div>
           <div class="cell">Nome</div>
           <div class="cell">Pontos</div>
           <div class="cell">Vitórias</div>
-          <div class="cell">Equipa</div>
+          <div class="cell" style="border-radius: 0px 10px 0px 0px">Equipa</div>
         </div>
       </div>`;
 
-    $("#content").append(tablePilotos);
+    $("#content").append(pilotosHeader);
 
     for (var i = 0; i <= response.MRData.total; i++) {
       for (
@@ -85,7 +67,7 @@ function currentStandings() {
               <div class="cell">${j.Constructors[i].name}</div>
             </div>`;
 
-        $("#tabelaPilotos").append(currentPilotos);
+        $("#pilotosHeader").append(currentPilotos);
       }
     }
   });
@@ -97,11 +79,11 @@ function currentStandings() {
   }).done(function (response) {
     var tableConstruct = `<div class="table" id="tabelaConstruct">
         <div class="row header green">
-          <div class="cell">Posição</div>
-          <div class="cell">Nome</div>
+          <div class="cell" style="border-radius: 10px 0px 0px">Posição</div>
+          <div class="cell">Equipa</div>
           <div class="cell">Pontos</div>
           <div class="cell">Vitórias</div>
-          <div class="cell">Equipa</div>
+          <div class="cell" style="border-radius: 0px 10px 0px 0px">Nacionalidade</div>
         </div>
       </div>`;
 
@@ -134,6 +116,44 @@ function currentStandings() {
   });
 }
 
+function currentSeason() {
+  $("#content").empty();
+
+  nextRace();
+
+  $.ajax({
+    url: "http://ergast.com/api/f1/current.json",
+    method: "GET",
+  }).done(function (response) {
+    var table = `<div class="table" id="tabela">
+        <div class="row header green">
+          <div class="cell" style="border-radius: 10px 0px 0px">Ronda</div>
+          <div class="cell">Localização</div>
+          <div class="cell">Nome do Circuito</div>
+          <div class="cell">Nome da Corrida</div>
+          <div class="cell">Data</div>
+          <div class="cell" style="border-radius: 0px 10px 0px 0px">Hora</div>
+        </div>
+      </div>`;
+
+    $("#content").append(table);
+
+    for (var i = 0; i <= response.MRData.total; i++) {
+      var j = response.MRData.RaceTable.Races[i];
+      var current = `<div class="row">
+            <div class="cell">${j.round}</div>
+            <div class="cell">${j.Circuit.Location.locality}, ${j.Circuit.Location.country}</div>
+            <div class="cell">${j.Circuit.circuitName}</div>
+            <div class="cell">${j.raceName}</div>
+            <div class="cell">${j.date}</div>
+            <div class="cell">${j.time}</div>
+          </div>`;
+
+      $("#tabela").append(current);
+    }
+  });
+}
+
 function getNoticias() {
   $("#content").empty();
   var settings = {
@@ -160,25 +180,6 @@ function getNoticias() {
           </div>`;
 
       $("#content").append(noticia);
-    }
-  });
-}
-
-function nextRace() {
-  $.ajax({
-    url: "http://ergast.com/api/f1/current/next.json",
-    method: "GET",
-  }).done(function (response) {
-    for (var i = 0; i < response.MRData.total; i++) {
-      var j = response.MRData.RaceTable.Races[i];
-      var proximaCorrida = `<div>
-            <h2>${j.raceName}</h2>
-            <h4>${j.Circuit.circuitName}</h4>
-            <h4>${j.Circuit.Location.country}</h4>
-            <h5>${j.date}</h5>
-          </div>`;
-
-      $("#content").append(proximaCorrida);
     }
   });
 }

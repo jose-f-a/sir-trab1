@@ -26,14 +26,17 @@
 
     <div class="grid-container">
       <div class="side-menu">
-        <button onclick="currentSeason()">Calendário atual</button>
-        <button onclick="currentStandings()">Classificação Atual</button>
+        <button onclick="currentStandings()">Classificação</button>
+        <button onclick="currentSeason()">Calendário</button>
         <button onclick="getNoticias()">Notícias</button>
         <button onclick="arquivo()">Arquivo</button>
       </div>
 
       <div class="content" id="content">
         <!-- Alterar -->
+        <div class="loader" id="loader-1"></div>
+        <div class="first" id="first"></div>
+        <div class="second" id="second"></div>
       </div>
     </div>
   </body>
