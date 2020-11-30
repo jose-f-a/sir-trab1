@@ -4,24 +4,58 @@ $(document).ready(function () {
   $("#content").empty();
 
   nextRace();
-  currentStandings();
 });
 
 function nextRace() {
+  $("#content").empty();
+
   $.ajax({
     url: "http://ergast.com/api/f1/current/next.json",
     method: "GET",
   }).done(function (response) {
     for (var i = 0; i < response.MRData.total; i++) {
       var j = response.MRData.RaceTable.Races[i];
-      var proximaCorrida = `<div>
-            <h2>${j.raceName}</h2>
-            <h4>${j.Circuit.circuitName}</h4>
-            <h4>${j.Circuit.Location.country}</h4>
-            <h5>${j.date}</h5>
-          </div> <br>`;
+      const data = j.date + " " + j.time;
+      var titulo = `<h2 id="titulo">Próxima corrida:</h2>`;
 
+      var proximaCorrida = `<div class="nextRace" id="nextRace">
+            <h3 class="GPname">${j.raceName}</h3>
+            <h4 class="GPcircuit">${j.Circuit.circuitName}</h4>
+            <h4 id="counter"></h4>
+            <br/>
+            <a href="${j.Circuit.url}" target="_blank">More</a>
+          </div>`;
+
+      $("#content").append(titulo);
       $("#content").append(proximaCorrida);
+
+      /* Countdown */
+      var countDownDate = new Date(data).getTime();
+      // Update the count down every 1 second
+      var x = setInterval(function () {
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("counter").innerHTML =
+          days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("counter").innerHTML = "Expirou";
+        }
+      }, 1000);
     }
   });
 }
@@ -34,9 +68,6 @@ function currentStandings() {
     url: "http://ergast.com/api/f1/current/driverStandings.json",
     method: "GET",
   }).done(function (response) {
-    var temporada = `<h2>Temporada: ${response.MRData.StandingsTable.season} </h2> <br>`;
-    $("#content").append(temporada);
-
     var pilotosHeader = `<div class="table" id="pilotosHeader">
         <div class="row header green">
           <div class="cell" style="border-radius: 10px 0px 0px">Posição</div>
@@ -86,7 +117,6 @@ function currentStandings() {
           <div class="cell" style="border-radius: 0px 10px 0px 0px">Nacionalidade</div>
         </div>
       </div>`;
-
     $("#content").append(tableConstruct);
 
     for (var i = 0; i <= response.MRData.total; i++) {
@@ -119,8 +149,6 @@ function currentStandings() {
 function currentSeason() {
   $("#content").empty();
 
-  nextRace();
-
   $.ajax({
     url: "http://ergast.com/api/f1/current.json",
     method: "GET",
@@ -128,9 +156,9 @@ function currentSeason() {
     var table = `<div class="table" id="tabela">
         <div class="row header green">
           <div class="cell" style="border-radius: 10px 0px 0px">Ronda</div>
-          <div class="cell">Localização</div>
+          <div class="cell">Corrida</div>
           <div class="cell">Nome do Circuito</div>
-          <div class="cell">Nome da Corrida</div>
+          <div class="cell">Localização</div>
           <div class="cell">Data</div>
           <div class="cell" style="border-radius: 0px 10px 0px 0px">Hora</div>
         </div>
@@ -142,9 +170,9 @@ function currentSeason() {
       var j = response.MRData.RaceTable.Races[i];
       var current = `<div class="row">
             <div class="cell">${j.round}</div>
-            <div class="cell">${j.Circuit.Location.locality}, ${j.Circuit.Location.country}</div>
-            <div class="cell">${j.Circuit.circuitName}</div>
             <div class="cell">${j.raceName}</div>
+            <div class="cell">${j.Circuit.circuitName}</div>
+            <div class="cell">${j.Circuit.Location.locality}, ${j.Circuit.Location.country}</div>
             <div class="cell">${j.date}</div>
             <div class="cell">${j.time}</div>
           </div>`;
@@ -156,6 +184,7 @@ function currentSeason() {
 
 function getNoticias() {
   $("#content").empty();
+
   var settings = {
     url:
       "https://newsapi.org/v2/everything?q=f1&apiKey=277b737d73cb451b99b3364115c2e329",
@@ -171,12 +200,14 @@ function getNoticias() {
     for (var i = 0; i < 6; i++) {
       var j = response.articles[i];
       var noticia = `<div class="noticia" id="noticia${i}">
-            <a href="${j.url}">Link</a>
             <h2 class="titulo"> ${j.title} </h2>
             <h4 class="source"> ${j.source.name} </h4>
             <p class="data">${j.publishedAt}</p>
-            <p class="corpo">${j.content}</p>
-            <img src="${j.urlToImage}" alt="${j.title}" width="625" height="350">
+            <br>
+            <img src="${j.urlToImage}" alt="${j.title}" width="625" height="360">
+            <br><br><br>
+            <a href="${j.url}">LER MAIS</a> <br><br><br>
+            <hr>
           </div>`;
 
       $("#content").append(noticia);

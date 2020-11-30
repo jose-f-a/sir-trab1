@@ -7,8 +7,9 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
     <link
@@ -26,6 +27,7 @@
 
     <div class="grid-container">
       <div class="side-menu">
+        <button onclick="nextRace()">Proxima Corrida</button>
         <button onclick="currentStandings()">Classificação</button>
         <button onclick="currentSeason()">Calendário</button>
         <button onclick="getNoticias()">Notícias</button>
@@ -35,8 +37,8 @@
       <div class="content" id="content">
         <!-- Alterar -->
         <div class="loader" id="loader-1"></div>
-        <div class="first" id="first"></div>
-        <div class="second" id="second"></div>
+        <div id="first"></div>
+        <div id="second"></div>
       </div>
     </div>
   </body>

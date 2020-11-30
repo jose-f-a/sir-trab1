@@ -16,7 +16,7 @@ body {
 .table {
   margin: 0 0 40px 0;
   width: 100%;
-  box-shadow: 11px 8px 15px rgba(10, 10, 10, 0.2);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   display: table;
   background: transparent;
 }
