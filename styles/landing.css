@@ -10,12 +10,12 @@ body {
 .grid-container {
   display: grid;
   justify-content: center;
-  grid-template-columns: 33.3% 33.3% 33.3%;
-  grid-template-rows: 10% 900px;
+  grid-template-columns: 100%;
+  grid-template-rows: 8% 92%;
   gap: 0px 0px;
   grid-template-areas:
-    "Header Header Header"
-    "F1 CSGO Futebol";
+    "Header"
+    "Container";
 }
 
 /** Header */
@@ -41,7 +41,7 @@ body {
 }
 .Header #sobre {
   background-color: rgb(232, 232, 232);
-  padding: 14px 20px;
+  padding: 14px 25px;
   color: rgb(43, 43, 43);
   text-decoration: none;
   font-family: "Roboto", sans-serif;
@@ -64,53 +64,42 @@ body {
 }
 
 /**  Container */
-.F1 {
-  grid-area: F1;
+.Container {
+  grid-area: Container;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
 }
 
-.CSGO {
-  grid-area: CSGO;
-}
-.Futebol {
-  grid-area: Futebol;
-}
 .F1,
-.CSGO,
-.Futebol {
-  padding: 35px;
+.CSGO {
   height: fit-content;
   width: fit-content;
-  transform: scale(0.75, 0.75);
+  transform: scale(0.65, 0.65);
   filter: grayscale(100%);
-  transition: filter 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
 .F1:hover,
-.CSGO:hover,
-.Futebol:hover {
+.CSGO:hover {
   filter: grayscale(0%);
+  text-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
 }
 
 img {
-  box-shadow: 11px 8px 45px rgba(18, 18, 18, 0.5);
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
   border-radius: 18px;
+  transition: all 0.3s ease-in-out;
 }
 
 .F1 h2,
-.CSGO h2,
-.Futebol h2 {
+.CSGO h2 {
+  font-family: "Montserrat", sans-serif;
   font-size: 52px;
   font-weight: bold;
-  position: absolute;
-  top: 75%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.2ms ease-in;
+  letter-spacing: 3px;
+  margin-top: 15px;
 }
-/* .F1 h2:hover,
-.CSGO h2:hover,
-.Futebol h2:hover {
-} */
 
 /**  Scrollbar */
 ::-webkit-scrollbar-track {

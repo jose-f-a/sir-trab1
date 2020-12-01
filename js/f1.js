@@ -16,17 +16,23 @@ function nextRace() {
     for (var i = 0; i < response.MRData.total; i++) {
       var j = response.MRData.RaceTable.Races[i];
       const data = j.date + " " + j.time;
-      var titulo = `<h2 id="titulo">Próxima corrida:</h2>`;
 
-      var proximaCorrida = `<div class="nextRace" id="nextRace">
-            <h3 class="GPname">${j.raceName}</h3>
-            <h4 class="GPcircuit">${j.Circuit.circuitName}</h4>
-            <h4 id="counter"></h4>
-            <br/>
-            <a href="${j.Circuit.url}" target="_blank">More</a>
+      var proximaCorrida = `<div class="nextrace-container" id="nextRace">
+            <div class="nextrace">
+              <div class="nextrace-preview">
+                <h6>Próxima corrida</h6>
+                <h2>${j.raceName}</h2>
+                <a href="${j.Circuit.url}" target="_blank">Sobre o circuito <b> > </b></a>
+              </div>
+              <div class="nextrace-info">
+                <h6>${j.raceName}</h6>
+                <h2>${j.Circuit.circuitName}</h2>
+                <h4>${j.date}</h4>
+                <h4 id="counter"></h4>
+              </div>
+            </div> 
           </div>`;
 
-      $("#content").append(titulo);
       $("#content").append(proximaCorrida);
 
       /* Countdown */

@@ -27,19 +27,20 @@
           <li><a id="sobre" href="./about.html">Sobre</a></li>
         </ul>
       </nav>
-
-      <div class="F1" onclick="openF1()">
-        <img src="../assets/f1.jpg" alt="F1" />
-        <h2>Formula 1</h2>
+      <div class="Container">
+        <div class="F1" onclick="openF1()">
+          <img src="../assets/f1.jpg" alt="F1" />
+          <h2>Formula 1</h2>
+        </div>
+        <div class="CSGO" onclick="openCSGO()">
+          <img src="../assets/csgo.jpg" alt="CSGO" />
+          <h2>CS:GO</h2>
+        </div>
       </div>
-      <div class="CSGO" onclick="openCSGO()">
-        <img src="../assets/csgo.jpg" alt="CSGO" />
-        <h2>CS:GO</h2>
-      </div>
-      <div class="Futebol" onclick="openFUT()">
+      <!-- <div class="Futebol" onclick="openFUT()">
         <img src="../assets/fut.jpg" alt="Futebol" />
         <h2>Futebol</h2>
-      </div>
+      </div> -->
     </div>
   </body>
 
@@ -48,7 +49,7 @@
       location.href = "./f1.html";
     }
     function openCSGO() {
-      location.href = "./csgo.php";
+      location.href = "./csgo.html";
     }
     function openFUT() {
       location.href = "./futebol.php";
