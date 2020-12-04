@@ -22,7 +22,7 @@ function nextRace() {
               <div class="nextrace-preview">
                 <h6>Próxima corrida</h6>
                 <h2>${j.raceName}</h2>
-                <a href="${j.Circuit.url}" target="_blank">Sobre o circuito <b> > </b></a>
+                <a href="${j.Circuit.url}">Sobre o circuito<i class="fas fa-chevron-right"></i></a>
               </div>
               <div class="nextrace-info">
                 <h6>${j.raceName}</h6>
@@ -62,6 +62,46 @@ function nextRace() {
           document.getElementById("counter").innerHTML = "Expirou";
         }
       }, 1000);
+
+      /* Weather */
+      const lat = j.Circuit.Location.lat;
+      const long = j.Circuit.Location.long;
+
+      const settings = {
+        async: true,
+        crossDomain: true,
+        url:
+          "https://aerisweather1.p.rapidapi.com/forecasts/" + lat + "," + long,
+        method: "GET",
+        headers: {
+          "x-rapidapi-key":
+            "4b3b8118a1msh9f9fa3a7995d4d1p1340c9jsn4c7d56025204",
+          "x-rapidapi-host": "aerisweather1.p.rapidapi.com",
+        },
+      };
+
+      $.ajax(settings).done(function (response) {
+        for (var i = 0; i <= 1; i++) {
+          for (var k = 0; k < 4; k++) {
+            var j = response.response[i];
+            var date = j.periods[k].validTime;
+
+            var weather = `<div class="weather-container" id="weather">
+              <div class="weather">
+                <div class="weather-preview">
+                  <h6>Meteorologia</h6>
+                  <h2>${j.periods[k].avgFeelslikeC}ºC</h2>
+                  <h6>${date}</h6>
+                </div>
+              </div>
+            </div>`;
+
+            $("#content").append(weather);
+          }
+        }
+
+        console.log(response);
+      });
     }
   });
 }

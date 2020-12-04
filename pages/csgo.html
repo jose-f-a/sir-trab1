@@ -3,9 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="csgo.css" />
-    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/csgo.css" />
+    <title>CSGO</title>
   </head>
-  <body></body>
+  <body>
+    <body>
+      <nav class="Header">
+        <a id="logo" href="index.html">Sports Portal</a>
+      </nav>
+  
+      <div class="grid-container">
+        <div class="side-menu">
+          <button onclick="currentMatches()">Partidas a decorrer</button>
+          <button onclick="nextMatches()">Próximas partidas</button>
+        </div>
+  
+        <div class="content" id="content">
+          <!-- Alterar -->
+          <div class="loader" id="loader-1"></div>
+          <div id="first"></div>
+          <div id="second"></div>
+        </div>
+      </div>
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="../js/csgo.js"></script>
 </html>

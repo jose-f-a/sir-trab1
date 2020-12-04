@@ -110,19 +110,16 @@
   overflow: hidden;
   width: 700px;
 }
-
 .nextrace h6 {
   opacity: 0.6;
   margin: 0;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-
 .nextrace h2 {
   letter-spacing: 1px;
   margin: 10px 0;
 }
-
 .nextrace-preview {
   background: linear-gradient(
     141deg,
@@ -133,7 +130,6 @@
   padding: 30px;
   max-width: 250px;
 }
-
 .nextrace-preview a {
   color: #111;
   display: inline-block;
@@ -142,11 +138,50 @@
   margin-top: 30px;
   text-decoration: underline;
 }
-
 .nextrace-info {
   padding: 30px;
   position: relative;
   width: 100%;
+}
+
+/** Weather */
+.weather {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  max-width: 100%;
+  margin: 20px;
+  overflow: hidden;
+  width: 250px;
+}
+.weather h6 {
+  opacity: 0.6;
+  margin: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.weather h2 {
+  letter-spacing: 1px;
+  margin: 10px 0;
+}
+.weather-preview {
+  background: linear-gradient(
+    141deg,
+    rgba(114, 255, 182, 1) 0%,
+    rgba(16, 209, 100, 1) 100%
+  );
+  color: #000;
+  padding: 30px;
+  max-width: 250px;
+}
+.weather-preview a {
+  color: #111;
+  display: inline-block;
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 30px;
+  text-decoration: underline;
 }
 
 /** Loader */
@@ -169,16 +204,13 @@
   border: 10px solid transparent;
   border-top-color: #10d164;
 }
-
 #loader-1:before {
   z-index: 100;
   animation: spin 1s infinite;
 }
-
 #loader-1:after {
   border: 10px solid #ccc;
 }
-
 @keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
