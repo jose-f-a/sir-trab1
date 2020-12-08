@@ -82,21 +82,34 @@ function nextRace() {
 
       $.ajax(settings).done(function (response) {
         for (var i = 0; i <= 1; i++) {
-          for (var k = 0; k < 4; k++) {
+          for (var k = 0; k <= 5; k++) {
             var j = response.response[i];
-            var date = j.periods[k].validTime;
 
-            var weather = `<div class="weather-container" id="weather">
-              <div class="weather">
+            /** Extract date from string */
+            var date = new Date(j.periods[k].validTime);
+            year = date.getFullYear();
+            month = date.getMonth() + 1;
+            dt = date.getDate();
+
+            if (dt < 10) {
+              dt = "0" + dt;
+            }
+            if (month < 10) {
+              month = "0" + month;
+            }
+
+            var weatherContainer = `<div class="weather-container" id="weather">`;
+            var weather = `<div class="weather">
                 <div class="weather-preview">
                   <h6>Meteorologia</h6>
                   <h2>${j.periods[k].avgFeelslikeC}ºC</h2>
-                  <h6>${date}</h6>
+                  <h5>${dt + "-" + month + "-" + year}</h5>
                 </div>
               </div>
             </div>`;
 
-            $("#content").append(weather);
+            $("#weather").append(weather);
+            $("#content").append(weatherContainer);
           }
         }
 

@@ -103,7 +103,7 @@
 .nextrace {
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   max-width: 100%;
   margin: 20px;
@@ -134,7 +134,7 @@
   color: #111;
   display: inline-block;
   font-size: 12px;
-  opacity: 0.6;
+  opacity: 0.8;
   margin-top: 30px;
   text-decoration: underline;
 }
@@ -145,18 +145,12 @@
 }
 
 /** Weather */
-.weather {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+.weather-container {
   display: flex;
-  max-width: 100%;
-  margin: 20px;
-  overflow: hidden;
-  width: 250px;
+  flex-direction: row;
 }
-.weather h6 {
-  opacity: 0.6;
+.weather h5 {
+  opacity: 0.75;
   margin: 0;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -166,6 +160,8 @@
   margin: 10px 0;
 }
 .weather-preview {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 10px;
   background: linear-gradient(
     141deg,
     rgba(114, 255, 182, 1) 0%,
@@ -173,15 +169,7 @@
   );
   color: #000;
   padding: 30px;
-  max-width: 250px;
-}
-.weather-preview a {
-  color: #111;
-  display: inline-block;
-  font-size: 12px;
-  opacity: 0.6;
-  margin-top: 30px;
-  text-decoration: underline;
+  margin: 20px;
 }
 
 /** Loader */
