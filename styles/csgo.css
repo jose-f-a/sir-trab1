@@ -75,24 +75,59 @@ h1 {
 .stream-list {
   height: fit-content;
   width: fit-content;
+
+  margin-top: 35px;
+  transition: all 0.1s ease-in;
+}
+.stream {
   box-shadow: rgba(145, 71, 255, 0.4) 5px 5px, rgba(145, 71, 255, 0.3) 10px 10px,
     rgba(145, 71, 255, 0.2) 15px 15px, rgba(145, 71, 255, 0.1) 20px 20px,
     rgba(145, 71, 255, 0.05) 25px 25px;
-  margin-top: 35px;
-  transition: all 0.1s ease-in;
 }
 
 /** Matches */
 .match-list {
+  width: 75%;
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   border: 1px solid #333;
+  border-radius: 10px;
   color: #222;
   margin-top: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+.data {
+  display: flex;
+  padding-left: 50px;
+  cursor: context-menu;
+  align-items: center;
+}
+.data h4 {
+  padding-right: 10px;
+}
+.league,
 .equipas {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  margin: 5px;
+  padding: 10px;
+  cursor: context-menu;
+}
+.league-name {
+  padding-left: 25px;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1.5px;
+  cursor: context-menu;
+}
+.equipas-nome {
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: context-menu;
+}
+.equipas-nome h3 {
+  padding-left: 7px;
+  cursor: context-menu;
 }
 
 /** Loader */

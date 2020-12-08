@@ -81,6 +81,7 @@ function nextRace() {
       };
 
       $.ajax(settings).done(function (response) {
+        console.log(response);
         for (var i = 0; i <= 1; i++) {
           for (var k = 0; k <= 5; k++) {
             var j = response.response[i];
@@ -102,6 +103,7 @@ function nextRace() {
             var weather = `<div class="weather">
                 <div class="weather-preview">
                   <h6>Meteorologia</h6>
+                  <h5>${j.periods[k].weatherPrimary}</h5>
                   <h2>${j.periods[k].avgFeelslikeC}ºC</h2>
                   <h5>${dt + "-" + month + "-" + year}</h5>
                 </div>
@@ -112,8 +114,6 @@ function nextRace() {
             $("#content").append(weatherContainer);
           }
         }
-
-        console.log(response);
       });
     }
   });

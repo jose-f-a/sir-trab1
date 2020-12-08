@@ -153,7 +153,6 @@
   opacity: 0.75;
   margin: 0;
   letter-spacing: 1px;
-  text-transform: uppercase;
 }
 .weather h2 {
   letter-spacing: 1px;
@@ -170,6 +169,7 @@
   color: #000;
   padding: 30px;
   margin: 20px;
+  width: 200px;
 }
 
 /** Loader */

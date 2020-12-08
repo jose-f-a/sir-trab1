@@ -4,7 +4,7 @@ $(document).ready(function () {
   $("#content").empty();
   $("#content").append(loader);
 
-  currentMatches();
+  nextMatches();
 });
 
 function currentMatches() {
@@ -31,6 +31,11 @@ function currentMatches() {
       } else {
         var matches = `<div class="stream-list">
           <div class="match">
+            <div class="league">
+            <img src="${response[i].league.image_url}" width="64px" height="64px"></img>
+            <h3 class="league-name">${response[i].league.name}</h3>
+          </div>
+          
             <iframe
               class="stream"
               src="${response[i].live_embed_url}&parent=localhost&autoplay=false"
@@ -67,24 +72,62 @@ function nextMatches() {
       if (response[i].opponents.length == 0) {
         var matchesUpcoming = ` `;
       } else {
-        for (var k = 0; k < response[i].opponents.length; k++) {
-          var equipas = response[i].opponents[k].opponent.name;
-          console.log(equipas);
-          var matchesUpcoming = `<div class="match-list">
+        /** Extract date from string */
+        var date = new Date(response[i].begin_at);
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        dt = date.getDate();
+        hour = date.getHours();
+        minute = date.getMinutes();
+
+        if (dt < 10) {
+          dt = "0" + dt;
+        }
+        if (month < 10) {
+          month = "0" + month;
+        }
+        if (hour < 10) {
+          hour = "0" + hour;
+        }
+        if (minute < 10) {
+          minute = "0" + minute;
+        }
+
+        var matchesUpcoming = `<div class="match-list">
             <div class="match">
-              <h2>${response[i].name}</h2>
-              <h3>${response[i].league.name}</h3>
-              <h6>${response[i].begin_at}</h6>
+              <div class="league">
+                <img src="${
+                  response[i].league.image_url
+                }" width="64px" height="64px"></img>
+                <h3 class="league-name">${response[i].league.name}</h3>
+              </div>
+              
+              
+
               <div class="equipas">
-                <img src="${response[i].opponents[k].opponent.image_url}" width="18px" height="18px">
-                <h3>${equipas}</h3>
+                <div class="equipas-nome">
+                  <img src="${
+                    response[i].opponents[0].opponent.image_url
+                  }" width="23px" height="23px">
+                  <h3 >${response[i].opponents[0].opponent.name} </h3>
+                </div>
+                
                 <h4> vs </h4>
-                <img src="${response[i].opponents[k].opponent.image_url}" width="18px" height="18px">
-                <h3>${equipas}</h3>
+
+                <div class="equipas-nome">
+                  <img src="${
+                    response[i].opponents[1].opponent.image_url
+                  }" width="23px" height="23px">
+                  <h3> ${response[i].opponents[1].opponent.name}</h3>    
+                </div>
+
+                <div class="data">
+                  <h4>${hour + ":" + minute}</h4>
+                  <h5>${dt + "-" + month + "-" + year}</h5>
+                </div>
               </div>
             </div>
           </div>`;
-        }
       }
       $("#content").append(matchesUpcoming);
     }
