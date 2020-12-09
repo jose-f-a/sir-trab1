@@ -52,15 +52,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+              <a class="nav-link js-scroll-trigger" href="#about">Sobre</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#services">API's</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact"
-                >Tecnologias</a
-              >
+              <a class="nav-link js-scroll-trigger" href="#contact">Tecnologias</a>
             </li>
           </ul>
         </div>
@@ -70,7 +68,7 @@
     <header class="bg-primary text-black header-color">
       <div class="container text-center">
         <h1>Sobre o Sports Portal</h1>
-        <p class="lead">Um portal para ver tudo sobre os desportos favoritos</p>
+        <p class="lead">Um portal informativo sobre desportos</p>
       </div>
     </header>
 
@@ -78,28 +76,21 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>About this page</h2>
+            <div class="text-svg">
+              <h2 class="text-svg" style="margin-right: 15px;">Sobre o site</h2>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" height="20px">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            
             <p class="lead">
-              This is a great place to talk about your webpage. This template is
-              purposefully unstyled so you can use it as a boilerplate or
-              starting point for you own landing page designs! This template
-              features:
+              Este site usa várias API's para obter informações sobre desportos como 
+              Formula 1 e Counter-Strike: Global Offensive. 
+              Além dessas API's também são usadas outras para complementar para oferecer 
+              uma informação mais completa. Optou-se na qualidade de uso em vez da quantidade de API's.
+              Todas elas são muito completas, com muita informação a cada pedido que é feito, o que
+              faz com que não fossem preciso outras API's para obter dados extra.
             </p>
-            <ul>
-              <li>Clickable nav links that smooth scroll to page sections</li>
-              <li>
-                Responsive behavior when clicking nav links perfect for a one
-                page website
-              </li>
-              <li>
-                Bootstrap's scrollspy feature which highlights which section of
-                the page you're on in the navbar
-              </li>
-              <li>
-                Minimal custom CSS so you are free to explore your own unique
-                design options
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -109,13 +100,16 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Services we offer</h2>
+            <h2>API's</h2>
             <p class="lead">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
-              optio velit inventore, expedita quo laboriosam possimus ea
-              consequatur vitae, doloribus consequuntur ex. Nemo assumenda
-              laborum vel, labore ut velit dignissimos.
+              As API's usadas são:
             </p>
+            <ul>
+              <li><a href="http://ergast.com/mrd/" target="_blank" rel="noopener noreferrer" class="api-link"> Ergast F1 </a></li>
+              <li><a href="https://pandascore.co/" target="_blank" rel="noopener noreferrer" class="api-link"> PandaScore </a></li>
+              <li><a href="https://newsapi.org/" target="_blank" rel="noopener noreferrer" class="api-link"> NewsAPI </a></li>
+              <li><a href="https://rapidapi.com/aerisweather-aerisweather/api/aerisweather1" target="_blank" rel="noopener noreferrer" class="api-link"> Aeris Weather </a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -125,12 +119,14 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Contact us</h2>
+            <h2>Tecnologias</h2>
             <p class="lead">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero
-              odio fugiat voluptatem dolor, provident officiis, id iusto!
-              Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa
-              exercitationem, in, quo totam.
+              Para a estrutura este website é usado simples HTML. Quanto à estilagem, é à base de CSS básico,
+              assim como intermédio, com algumas animações e também importação de alguns templates básicos.
+            </p>
+            <p class="lead">
+              A obtenção da informação e tratamento dos dados das API's é usado JavaScript e a biblioteca
+              jQuery. Através destes dois, foi possivel fazer tudo que é visto no website inteiro.
             </p>
           </div>
         </div>
@@ -140,7 +136,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">José Ferreira 21628</p>
+        <p class="m-0 text-center text-white">José Ferreira - 21628</p>
         <p class="m-0 text-center text-white">
           Sistemas de Redes Integradas - Engenharia Informática
         </p>

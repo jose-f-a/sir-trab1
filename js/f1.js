@@ -22,7 +22,12 @@ function nextRace() {
               <div class="nextrace-preview">
                 <h6>Próxima corrida</h6>
                 <h2>${j.raceName}</h2>
-                <a href="${j.Circuit.url}">Sobre o circuito<i class="fas fa-chevron-right"></i></a>
+                <div class="text-svg">
+                  <a href="${j.Circuit.url}">Sobre o circuito </a>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#333333" height="16px">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </div>
               </div>
               <div class="nextrace-info">
                 <h6>${j.raceName}</h6>
@@ -91,6 +96,7 @@ function nextRace() {
             year = date.getFullYear();
             month = date.getMonth() + 1;
             dt = date.getDate();
+            day = date.getDay();
 
             if (dt < 10) {
               dt = "0" + dt;
@@ -99,12 +105,37 @@ function nextRace() {
               month = "0" + month;
             }
 
+            switch (day) {
+              case 0:
+                day = "Domingo (Corrida)";
+                break;
+              case 1:
+                day = "Segunda-feira";
+                break;
+              case 2:
+                day = "Terça-feira";
+                break;
+              case 3:
+                day = "Quarta-feira";
+                break;
+              case 4:
+                day = "Quinta-feira";
+                break;
+              case 5:
+                day = "Sexta-feira (Treinos)";
+                break;
+              case 6:
+                day = "Sábado (Qualificações)";
+                break;
+            }
+
             var weatherContainer = `<div class="weather-container" id="weather">`;
             var weather = `<div class="weather">
                 <div class="weather-preview">
                   <h6>Meteorologia</h6>
                   <h5>${j.periods[k].weatherPrimary}</h5>
                   <h2>${j.periods[k].avgFeelslikeC}ºC</h2>
+                  <h5>${day}</h5>
                   <h5>${dt + "-" + month + "-" + year}</h5>
                 </div>
               </div>
@@ -256,12 +287,15 @@ function getNoticias() {
   $.ajax(settings).done(function (response) {
     console.log(response);
 
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < response.articles.length; i++) {
+      console.log(response);
       var j = response.articles[i];
+      getDate(j.publishedAt);
+
       var noticia = `<div class="noticia" id="noticia${i}">
             <h2 class="titulo"> ${j.title} </h2>
             <h4 class="source"> ${j.source.name} </h4>
-            <p class="data">${j.publishedAt}</p>
+            <p class="data">${dt + '-' + month + '-' + year}</p>
             <br>
             <img src="${j.urlToImage}" alt="${j.title}" width="625" height="360">
             <br><br><br>
@@ -272,4 +306,29 @@ function getNoticias() {
       $("#content").append(noticia);
     }
   });
+}
+
+function getDate(data) {
+  /** Extract date from string */
+  var date = new Date(data);
+  year = date.getFullYear();
+  month = date.getMonth() + 1;
+  dt = date.getDate();
+  hour = date.getHours();
+  minute = date.getMinutes();
+
+  if (dt < 10) {
+    dt = "0" + dt;
+  }
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (hour < 10) {
+    hour = "0" + hour;
+  }
+  if (minute < 10) {
+    minute = "0" + minute;
+  }
+
+  return year, dt, month, hour, minute; 
 }

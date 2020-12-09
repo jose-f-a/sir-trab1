@@ -114,10 +114,13 @@ h1 {
   cursor: context-menu;
 }
 .league-name {
+  text-decoration: none;
+  color: #222;
+  font-weight: bold;
   padding-left: 25px;
   font-family: "Montserrat", sans-serif;
   letter-spacing: 1.5px;
-  cursor: context-menu;
+  cursor: pointer;
 }
 .equipas-nome {
   display: flex;
@@ -128,6 +131,41 @@ h1 {
 .equipas-nome h3 {
   padding-left: 7px;
   cursor: context-menu;
+}
+
+/**  Noticias */
+.noticia {
+  padding: 25px;
+}
+.titulo,
+.source {
+  color: #222;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  cursor: context-menu;
+}
+.noticia a {
+  background: linear-gradient(
+    141deg,
+    rgba(114, 255, 182, 1) 0%,
+    rgba(16, 209, 100, 1) 100%
+  );
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px 22px;
+  color: #222;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+}
+.noticia hr {
+  height: 2px;
+  background-color: #222;
+  border-width: 0;
 }
 
 /** Loader */

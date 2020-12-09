@@ -144,6 +144,11 @@
   width: 100%;
 }
 
+.text-svg {
+  display: flex;
+  align-items: flex-end;
+}
+
 /** Weather */
 .weather-container {
   display: flex;
