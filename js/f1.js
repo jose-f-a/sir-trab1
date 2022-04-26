@@ -68,7 +68,7 @@ function nextRace() {
         }
       }, 1000);
 
-      /* Weather */
+      /* Weather 
       const lat = j.Circuit.Location.lat;
       const long = j.Circuit.Location.long;
 
@@ -91,7 +91,7 @@ function nextRace() {
           for (var k = 0; k <= 5; k++) {
             var j = response.response[i];
 
-            /** Extract date from string */
+            // Extract date from string
             var date = new Date(j.periods[k].validTime);
             year = date.getFullYear();
             month = date.getMonth() + 1;
@@ -146,12 +146,50 @@ function nextRace() {
           }
         }
       });
+      */
     }
   });
 }
 
 function currentStandings() {
   $("#content").empty();
+
+  /** Getting Lastest Race Results */
+  $.ajax({
+    url: "http://ergast.com/api/f1/current/last/results.json",
+    method: "GET",
+  }).done(function (response) {
+    var latestRace = `<h3>${response.MRData.RaceTable.Races[0].raceName}</h3>`
+
+    var resultadosHeader = `<div class="table" id="resultadosHeader">
+        <div class="row header green">
+          <div class="cell" style="border-radius: 10px 0px 0px">Posição</div>
+          <div class="cell">Nome</div>
+          <div class="cell">Pontos</div>
+          <div class="cell">Status</div>
+          <div class="cell" style="border-radius: 0px 10px 0px 0px">Equipa</div>
+        </div>
+      </div>`;
+
+    $("#content").append(latestRace);
+    $("#content").append(resultadosHeader);
+
+    for (var i = 0; i <= response.MRData.total; i++) {
+      for (var k = 0; k <= response.MRData.RaceTable.Races[0].Results.length; k++) {
+        var j = response.MRData.RaceTable.Races[0].Results[k];
+
+        var currentResultados = `<div class="row">
+              <div class="cell">${j.position}</div>
+              <div class="cell">${j.Driver.givenName} ${j.Driver.familyName} </div>
+              <div class="cell">${j.points}</div>
+              <div class="cell">${j.status}</div>
+              <div class="cell">${j.Constructor.name}</div>
+            </div>`;
+
+        $("#resultadosHeader").append(currentResultados);
+      }
+    }
+  });
 
   /** Getting Driver Standings */
   $.ajax({
@@ -171,14 +209,8 @@ function currentStandings() {
     $("#content").append(pilotosHeader);
 
     for (var i = 0; i <= response.MRData.total; i++) {
-      for (
-        var k = 0;
-        k <=
-        response.MRData.StandingsTable.StandingsLists[i].DriverStandings.length;
-        k++
-      ) {
-        var j =
-          response.MRData.StandingsTable.StandingsLists[i].DriverStandings[k];
+      for (var k = 0; k <= response.MRData.StandingsTable.StandingsLists[i].DriverStandings.length; k++) {
+        var j = response.MRData.StandingsTable.StandingsLists[i].DriverStandings[k];
 
         var currentPilotos = `<div class="row">
               <div class="cell">${j.position}</div>
